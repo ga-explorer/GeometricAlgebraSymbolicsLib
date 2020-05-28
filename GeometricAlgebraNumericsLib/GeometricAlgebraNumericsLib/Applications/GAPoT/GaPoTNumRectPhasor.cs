@@ -47,29 +47,43 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
         public double YValue { get; }
 
 
-        public GaPoTNumRectPhasor(int id, double x, double y)
+        internal GaPoTNumRectPhasor(int id, double x, double y)
         {
-            Debug.Assert(id % 2 == 0);
+            Debug.Assert(id > 0 && id % 2 == 1);
 
             Id = id;
             XValue = x;
             YValue = y;
         }
 
+        internal GaPoTNumRectPhasor(int id, double x)
+        {
+            Debug.Assert(id > 0 && id % 2 == 1);
+
+            Id = id;
+            XValue = x;
+            YValue = 0;
+        }
+
         
-        public IEnumerable<GaPoTNumSinglePhaseVectorTerm> GetTerms()
+        public IEnumerable<GaPoTNumVectorTerm> GetTerms()
         {
             if (XValue != 0)
-                yield return new GaPoTNumSinglePhaseVectorTerm(
+                yield return new GaPoTNumVectorTerm(
                     Id,
                     XValue
                 );
 
             if (YValue != 0)
-                yield return new GaPoTNumSinglePhaseVectorTerm(
+                yield return new GaPoTNumVectorTerm(
                     Id + 1,
                     -YValue
                 );
+        }
+
+        public double Norm()
+        {
+            return Math.Sqrt(XValue * XValue + YValue * YValue);
         }
 
         public double Norm2()
@@ -91,8 +105,8 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             if (XValue == 0 && YValue == 0)
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             return $"r({XValue:G}, {YValue:G}) <{i1},{i2}>";
         }
@@ -102,13 +116,13 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             if (XValue == 0 && YValue == 0)
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
-            var xValueText = GaPoTNumUtils.GetLaTeXNumber(XValue);
-            var yValueText = GaPoTNumUtils.GetLaTeXNumber(YValue);
-            var basisText1 = GaPoTNumUtils.GetLaTeXBasisName($"{i1},{i2}");
-            var basisText2 = GaPoTNumUtils.GetLaTeXBasisName($"{i1}");
+            var xValueText = XValue.GetLaTeXNumber();
+            var yValueText = YValue.GetLaTeXNumber();
+            var basisText1 = $"{i1},{i2}".GetLaTeXBasisName();
+            var basisText2 = $"{i1}".GetLaTeXBasisName();
 
             if (XValue == 0)
                 return $@"\left( {yValueText} \right) {basisText1} {basisText2}";

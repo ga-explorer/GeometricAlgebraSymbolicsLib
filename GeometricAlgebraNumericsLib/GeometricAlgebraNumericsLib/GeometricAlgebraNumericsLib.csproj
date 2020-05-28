@@ -96,23 +96,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\GAPoT\GaPoTNumMultiPhaseVectorTerm.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTNumBivectorConstructorGrammar.cs" />
     <Compile Include="Applications\GAPoT\GaPoTNumUtils.cs" />
+    <Compile Include="Scalars\GaNumScalarTuple2.cs" />
+    <Compile Include="Scalars\IGaNumScalar.cs" />
+    <Compile Include="GuidedBinaryTraversal\Products\GaGbtNumMultivectorOrthogonalProductsStack3.cs" />
+    <Compile Include="GuidedBinaryTraversal\Products\TruthTable3Inputs.cs" />
     <Compile Include="Interop\MATLAB\MatlabUtils.cs" />
-    <Compile Include="Interop\MATLAB\MatlabSparseColumnMatrixData.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumSinglePhaseBivectorTerm.cs" />
-    <Compile Include="Multivectors\GAPoT\GaPoTComputer.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumMultiPhaseBivector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumMultiPhaseVector.cs" />
+    <Compile Include="Interop\MATLAB\GaNumMatlabSparseMatrixData.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTNumBivectorTerm.cs" />
     <Compile Include="Applications\GAPoT\GaPoTNumPolarPhasor.cs" />
     <Compile Include="Applications\GAPoT\GaPoTNumRectPhasor.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumSinglePhaseBivector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumSinglePhaseVector.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTNumBivector.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTNumVector.cs" />
     <Compile Include="Applications\GAPoT\GaPoTNumVectorConstructorGrammar.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTNumSinglePhaseVectorTerm.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTNumVectorTerm.cs" />
     <Compile Include="Multivectors\Numeric\Factories\GaNumMultivectorConstructorGrammar.cs" />
-    <Compile Include="Multivectors\GAPoT\GaPoTMultivectorFactory.cs" />
-    <Compile Include="Multivectors\GAPoT\GaPoTMultivectorConstructorGrammar.cs" />
     <Compile Include="Evaluator\IronyExpressionEvaluator.cs" />
     <Compile Include="Evaluator\IronyExpressionEvaluatorGrammar.cs" />
     <Compile Include="Exceptions\GaNumericsException.cs" />
@@ -135,8 +134,6 @@
     <Compile Include="Geometry\Primitives\GaNumVector3D.cs" />
     <Compile Include="GuidedBinaryTraversal\Multivectors\GaGbtNumSgrMultivectorStack1.cs" />
     <Compile Include="Maps\Bilinear\GaNumMapBilinearAssociativity.cs" />
-    <Compile Include="Multivectors\GAPoT\GaPoTMultivector.cs" />
-    <Compile Include="Multivectors\GAPoT\GaPoTUtils.cs" />
     <Compile Include="Multivectors\GaTerm.cs" />
     <Compile Include="Multivectors\GaTermUtils.cs" />
     <Compile Include="Multivectors\Numeric\GaNumMultivector.cs" />
@@ -144,6 +141,7 @@
     <Compile Include="Multivectors\Numeric\GaNumSgrMultivector.cs" />
     <Compile Include="Multivectors\IGaMultivectorSource.cs" />
     <Compile Include="Multivectors\Numeric\IGaNumMultivectorSource.cs" />
+    <Compile Include="Products\GaNumTrilinearProductUtils.cs" />
     <Compile Include="Structures\Collections\GaDarMultivectorAsDarKVectorReadOnlyList.cs" />
     <Compile Include="Structures\Collections\GaDarMultivectorAsVectorReadOnlyList.cs" />
     <Compile Include="Structures\Collections\GaDgrMultivectorAsDarMultivectorReadOnlyList.cs" />

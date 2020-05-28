@@ -14,12 +14,12 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
             var a2 = -30 * Math.PI / 180;
 
             //Voltage
-            var mvU = $"[p(1,{a1}) <1,2>] <a>"
-                .GaPoTNumParseMultiPhaseVector();
+            var mvU = $"p(1,{a1}) <1,2>"
+                .GaPoTNumParseVector();
 
             //Current
-            var mvI = $"[p(0.5,{a1}) <1,2>] <a>; [p(0.5,{a2}) <1,2>] <b>"
-                .GaPoTNumParseMultiPhaseVector();
+            var mvI = $"p(0.5,{a1}) <1,2>, p(0.5,{a2}) <3,4>"
+                .GaPoTNumParseVector();
 
             //Power
             var mvM = mvU * mvI;
@@ -29,13 +29,14 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
 
             Console.WriteLine($@"U = {mvU}");
             Console.WriteLine($@"I = {mvI}");
-            Console.WriteLine($@"M = U I = {mvM.ToLaTeX()}");
+            Console.WriteLine($@"M = U I = {mvM.TermsToLaTeX()}");
             Console.WriteLine($@"Z = U inverse(I) = {mvZ}");
             Console.WriteLine();
 
             Console.WriteLine($@"norm2(U) = {mvU.Norm2():G}");
             Console.WriteLine($@"norm2(I) = {mvI.Norm2():G}");
             Console.WriteLine($@"norm2(M) = {mvM.Norm2():G}");
+            Console.WriteLine($@"norm2(U) * norm2(I) = {(mvU.Norm2() * mvI.Norm2()):G}");
             Console.WriteLine($@"norm2(Z) = {mvZ.Norm2():G}");
             Console.WriteLine();
 
@@ -51,10 +52,6 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
 
             Console.WriteLine($@"inverse(U) = {mvU.Inverse()}");
             Console.WriteLine($@"inverse(I) = {mvI.Inverse()}");
-            Console.WriteLine();
-            
-            //Note: I'm not sure this computation is as required, please verify results.
-            Console.WriteLine($@"inverse(Z) = {mvZ.PerPhaseInverse()}");
             Console.WriteLine();
         }
     }

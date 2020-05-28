@@ -36,21 +36,35 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
         public double Phase { get; }
 
 
-        public GaPoTNumPolarPhasor(int id, double magnitude, double phase)
+        internal GaPoTNumPolarPhasor(int id, double magnitude, double phase)
         {
-            Debug.Assert(id % 2 == 0);
+            Debug.Assert(id > 0 && id % 2 == 1);
 
             Id = id;
             Magnitude = magnitude;
             Phase = phase;
         }
 
+        internal GaPoTNumPolarPhasor(int id, double magnitude)
+        {
+            Debug.Assert(id > 0 && id % 2 == 1);
 
-        public IEnumerable<GaPoTNumSinglePhaseVectorTerm> GetTerms()
+            Id = id;
+            Magnitude = magnitude;
+            Phase = 0;
+        }
+
+
+        public IEnumerable<GaPoTNumVectorTerm> GetTerms()
         {
             return Magnitude == 0
-                ? Enumerable.Empty<GaPoTNumSinglePhaseVectorTerm>()
+                ? Enumerable.Empty<GaPoTNumVectorTerm>()
                 : ToRectPhasor().GetTerms();
+        }
+
+        public double Norm()
+        {
+            return Math.Abs(Magnitude);
         }
 
         public double Norm2()
@@ -72,8 +86,8 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             if (Magnitude == 0)
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             return $"p({Magnitude:G}, {Phase:G}) <{i1},{i2}>";
         }
@@ -83,13 +97,13 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             if (Magnitude == 0)
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
-            var magnitudeText = GaPoTNumUtils.GetLaTeXNumber(Magnitude);
-            var phaseText = GaPoTNumUtils.GetLaTeXNumber(Phase);
-            var basisText1 = GaPoTNumUtils.GetLaTeXBasisName($"{i1},{i2}");
-            var basisText2 = GaPoTNumUtils.GetLaTeXBasisName($"{i1}");
+            var magnitudeText = Magnitude.GetLaTeXNumber();
+            var phaseText = Phase.GetLaTeXNumber();
+            var basisText1 = $"{i1},{i2}".GetLaTeXBasisName();
+            var basisText2 = $"{i1}".GetLaTeXBasisName();
 
             if (Phase == 0)
                 return $@"{magnitudeText} {basisText2}";

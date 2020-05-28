@@ -92,121 +92,44 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal
 
         public bool TosHasChild10()
         {
-            return Stack1.TosHasChild0();
+            return Stack1.TosHasChild(0);
         }
 
         public bool TosHasChild11()
         {
-            return Stack1.TosHasChild1();
+            return Stack1.TosHasChild(1);
         }
 
         public bool TosHasChild20()
         {
-            return Stack2.TosHasChild0();
+            return Stack2.TosHasChild(0);
         }
 
         public bool TosHasChild21()
         {
-            return Stack2.TosHasChild1();
+            return Stack2.TosHasChild(1);
         }
 
         public bool TosHasChild30()
         {
-            return Stack3.TosHasChild0();
+            return Stack3.TosHasChild(0);
         }
 
         public bool TosHasChild31()
         {
-            return Stack3.TosHasChild1();
+            return Stack3.TosHasChild(1);
         }
 
 
-        public void PushDataOfChild000()
+        public void PushDataOfChild(int childIndex)
         {
             TosIndex++;
 
             TreeDepthArray[TosIndex] = TosTreeDepth - 1;
 
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild0();
-            Stack3.PushDataOfChild0();
-        }
-
-        public void PushDataOfChild100()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild0();
-            Stack3.PushDataOfChild0();
-        }
-
-        public void PushDataOfChild010()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild1();
-            Stack3.PushDataOfChild0();
-        }
-
-        public void PushDataOfChild110()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild1();
-            Stack3.PushDataOfChild0();
-        }
-
-        public void PushDataOfChild001()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild0();
-            Stack3.PushDataOfChild1();
-        }
-
-        public void PushDataOfChild101()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild0();
-            Stack3.PushDataOfChild1();
-        }
-
-        public void PushDataOfChild011()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild1();
-            Stack3.PushDataOfChild1();
-        }
-
-        public void PushDataOfChild111()
-        {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild1();
-            Stack3.PushDataOfChild1();
+            Stack1.PushDataOfChild(childIndex & 1);
+            Stack2.PushDataOfChild((childIndex >> 1) & 1);
+            Stack3.PushDataOfChild((childIndex >> 2) & 1);
         }
     }
 }

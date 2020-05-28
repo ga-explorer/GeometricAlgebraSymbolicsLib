@@ -54,24 +54,33 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
 
         internal GaPoTSymRectPhasor(int id, Expr x, Expr y)
         {
-            Debug.Assert(id % 2 == 0);
+            Debug.Assert(id > 0 && id % 2 == 1);
 
             Id = id;
             XValue = x;
             YValue = y;
         }
 
+        internal GaPoTSymRectPhasor(int id, Expr x)
+        {
+            Debug.Assert(id > 0 && id % 2 == 1);
+
+            Id = id;
+            XValue = x;
+            YValue = Expr.INT_ZERO;
+        }
+
         
-        public IEnumerable<GaPoTSymSinglePhaseVectorTerm> GetTerms()
+        public IEnumerable<GaPoTSymVectorTerm> GetTerms()
         {
             if (!XValue.IsZero())
-                yield return new GaPoTSymSinglePhaseVectorTerm(
+                yield return new GaPoTSymVectorTerm(
                     Id,
                     XValue
                 );
 
             if (!YValue.IsZero())
-                yield return new GaPoTSymSinglePhaseVectorTerm(
+                yield return new GaPoTSymVectorTerm(
                     Id + 1,
                     Mfs.Minus[YValue].GaPoTSymSimplify()
                 );
@@ -104,8 +113,8 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
             if (XValue.IsZero() && YValue.IsZero())
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             return $"r('{XValue}', '{YValue}') <{i1},{i2}>";
         }
@@ -115,8 +124,8 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
             if (XValue.IsZero() && YValue.IsZero())
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             var xValueText = XValue.GetLaTeXScalar().LaTeXMathAddParentheses();
             var yValueText = YValue.GetLaTeXScalar().LaTeXMathAddParentheses();

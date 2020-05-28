@@ -72,15 +72,15 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Outermorphisms
         }
 
 
-        public override bool TosHasChild0()
-        {
-            return true;
-        }
+        //public override bool TosHasChild0()
+        //{
+        //    return true;
+        //}
 
-        public override bool TosHasChild1()
-        {
-            return true;
-        }
+        //public override bool TosHasChild1()
+        //{
+        //    return true;
+        //}
 
 
         public override void PushRootData()
@@ -101,23 +101,45 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Outermorphisms
             TosIndex--;
         }
 
-        public override void PushDataOfChild0()
+        public override bool TosHasChild(int childIndex)
         {
-            TosIndex++;
-
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-            IdArray[TosIndex] = TosChildId0;
-            KVectorArray[TosIndex] = GetTosChildKVector0();
+            return true;
         }
 
-        public override void PushDataOfChild1()
+        public override void PushDataOfChild(int childIndex)
         {
             TosIndex++;
-
             TreeDepthArray[TosIndex] = TosTreeDepth - 1;
-            IdArray[TosIndex] = TosChildId1;
-            KVectorArray[TosIndex] = GetTosChildKVector1();
+
+            if ((childIndex & 1) == 0)
+            {
+                IdArray[TosIndex] = TosChildId0;
+                KVectorArray[TosIndex] = GetTosChildKVector0();
+            }
+            else
+            {
+                IdArray[TosIndex] = TosChildId1;
+                KVectorArray[TosIndex] = GetTosChildKVector1();
+            }
         }
+
+        //public override void PushDataOfChild0()
+        //{
+        //    TosIndex++;
+
+        //    TreeDepthArray[TosIndex] = TosTreeDepth - 1;
+        //    IdArray[TosIndex] = TosChildId0;
+        //    KVectorArray[TosIndex] = GetTosChildKVector0();
+        //}
+
+        //public override void PushDataOfChild1()
+        //{
+        //    TosIndex++;
+
+        //    TreeDepthArray[TosIndex] = TosTreeDepth - 1;
+        //    IdArray[TosIndex] = TosChildId1;
+        //    KVectorArray[TosIndex] = GetTosChildKVector1();
+        //}
 
         public IEnumerable<Tuple<ulong, GaNumDarKVector>> Traverse()
         {
@@ -136,9 +158,9 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Outermorphisms
                     continue;
                 }
 
-                PushDataOfChild1();
+                PushDataOfChild(1);
 
-                PushDataOfChild0();
+                PushDataOfChild(0);
             }
         }
     }

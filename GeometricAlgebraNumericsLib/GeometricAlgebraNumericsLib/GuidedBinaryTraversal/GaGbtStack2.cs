@@ -74,63 +74,115 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal
 
         public bool TosHasChild10()
         {
-            return Stack1.TosHasChild0();
+            return Stack1.TosHasChild(0);
         }
 
         public bool TosHasChild11()
         {
-            return Stack1.TosHasChild1();
+            return Stack1.TosHasChild(1);
         }
 
         public bool TosHasChild20()
         {
-            return Stack2.TosHasChild0();
+            return Stack2.TosHasChild(0);
         }
 
         public bool TosHasChild21()
         {
-            return Stack2.TosHasChild1();
+            return Stack2.TosHasChild(1);
         }
 
-
-        public void PushDataOfChild00()
+        public int TosHasChildPattern()
         {
-            TosIndex++;
+            var hasChild10 = Stack1.TosHasChild(0);
+            var hasChild11 = Stack1.TosHasChild(1);
 
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
+            var hasChild20 = Stack2.TosHasChild(0);
+            var hasChild21 = Stack2.TosHasChild(1);
 
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild0();
+            var pattern = 0;
+            if (hasChild10)
+            {
+                if (hasChild20) pattern |= 1;
+                if (hasChild21) pattern |= 2;
+            }
+
+            if (hasChild11)
+            {
+                if (hasChild20) pattern |= 4;
+                if (hasChild21) pattern |= 8;
+            }
+
+            return pattern;
         }
 
-        public void PushDataOfChild10()
+        public int TosHasChildPattern(int selectionMask)
         {
-            TosIndex++;
+            var hasChild10 = Stack1.TosHasChild(0);
+            var hasChild11 = Stack1.TosHasChild(1);
 
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
+            var hasChild20 = Stack2.TosHasChild(0);
+            var hasChild21 = Stack2.TosHasChild(1);
 
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild0();
+            var pattern = 0;
+            if (hasChild10)
+            {
+                if (hasChild20) pattern |= 1;
+                if (hasChild21) pattern |= 2;
+            }
+
+            if (hasChild11)
+            {
+                if (hasChild20) pattern |= 4;
+                if (hasChild21) pattern |= 8;
+            }
+
+            return pattern & selectionMask;
         }
 
-        public void PushDataOfChild01()
+        public void PushDataOfChildren()
         {
-            TosIndex++;
+            var selectionPattern = 
+                TosHasChildPattern();
 
-            TreeDepthArray[TosIndex] = TosTreeDepth - 1;
+            if ((selectionPattern & 1) != 0) 
+                PushDataOfChild(0);
 
-            Stack1.PushDataOfChild0();
-            Stack2.PushDataOfChild1();
+            if ((selectionPattern & 2) != 0) 
+                PushDataOfChild(1);
+
+            if ((selectionPattern & 4) != 0) 
+                PushDataOfChild(2);
+
+            if ((selectionPattern & 8) != 0) 
+                PushDataOfChild(3);
         }
 
-        public void PushDataOfChild11()
+        public void PushDataOfChildren(int selectionMask)
+        {
+            var selectionPattern = 
+                TosHasChildPattern(selectionMask);
+
+            if ((selectionPattern & 1) != 0) 
+                PushDataOfChild(0);
+
+            if ((selectionPattern & 2) != 0) 
+                PushDataOfChild(1);
+
+            if ((selectionPattern & 4) != 0) 
+                PushDataOfChild(2);
+
+            if ((selectionPattern & 8) != 0) 
+                PushDataOfChild(3);
+        }
+
+        public void PushDataOfChild(int childIndex)
         {
             TosIndex++;
-
             TreeDepthArray[TosIndex] = TosTreeDepth - 1;
 
-            Stack1.PushDataOfChild1();
-            Stack2.PushDataOfChild1();
+            Stack1.PushDataOfChild(childIndex & 1);
+            Stack2.PushDataOfChild((childIndex >> 1) & 1);
         }
     }
 }

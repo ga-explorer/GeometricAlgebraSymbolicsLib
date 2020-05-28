@@ -11,6 +11,9 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
 {
     public abstract class GaNumMultivector : IGaNumMultivector
     {
+
+
+
         private GaBtrInternalNode<double> _cachedBtrRootNode;
         internal GaBtrInternalNode<double> BtrRootNode 
             => _cachedBtrRootNode 

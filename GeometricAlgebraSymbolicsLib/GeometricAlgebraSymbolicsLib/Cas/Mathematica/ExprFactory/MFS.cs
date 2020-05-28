@@ -78,6 +78,7 @@ namespace GeometricAlgebraSymbolicsLib.Cas.Mathematica.ExprFactory
         public static Mfs Element { get; } = new Mfs("Element");
         public static Mfs Alternatives { get; } = new Mfs("Alternatives");
         public static Mfs Simplify { get; } = new Mfs("Simplify");
+        public static Mfs Expand { get; } = new Mfs("Expand");
         public static Mfs FullSimplify { get; } = new Mfs("FullSimplify");
         public static Mfs ReplaceAll { get; } = new Mfs("ReplaceAll");
 

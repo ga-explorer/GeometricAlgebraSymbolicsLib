@@ -8,18 +8,11 @@
 
         ulong TosChildId1 { get; }
 
-
         ulong RootId { get; }
 
+        bool TosHasChild(int childIndex);
 
-        bool TosHasChild0();
-
-        bool TosHasChild1();
-
-
-        void PushDataOfChild0();
-
-        void PushDataOfChild1();
+        void PushDataOfChild(int childIndex);
     }
 
     public interface IGaGbtStack1<out T> : IGaGbtStack1

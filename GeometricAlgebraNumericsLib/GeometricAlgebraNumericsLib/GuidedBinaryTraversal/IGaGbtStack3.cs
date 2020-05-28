@@ -41,21 +41,7 @@
         bool TosHasChild31();
 
 
-        void PushDataOfChild000();
-
-        void PushDataOfChild100();
-
-        void PushDataOfChild010();
-
-        void PushDataOfChild110();
-
-        void PushDataOfChild001();
-
-        void PushDataOfChild101();
-
-        void PushDataOfChild011();
-
-        void PushDataOfChild111();
+        void PushDataOfChild(int childIndex);
     }
 
     public interface IGaGbtStack3<out T> : IGaGbtStack3

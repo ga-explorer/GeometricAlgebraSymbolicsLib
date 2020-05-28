@@ -10,11 +10,11 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
         {
             CultureInfo.CurrentCulture = new CultureInfo("en-US");
             
-            var mvU = "[1<1>, 1<2>, 1<3>] <a>; [2<1>, 1<2>] <b>; [1<1>, -1<2>] <c>"
-                .GaPoTNumParseMultiPhaseVector();
+            var mvU = "1<1>, 1<2>, 1<3>, 2<4>, 1<5>, 1<7>, -1<8>"
+                .GaPoTNumParseVector();
 
-            var mvI = "[1<1>, 1<2>, 1<3>] <a>; [3<1>, 0.5<2>] <b>; [1<1>] <c>"
-                .GaPoTNumParseMultiPhaseVector();
+            var mvI = "1<1>, 1<2>, 1<3>, 3<4>, 0.5<5>, 1<7>"
+                .GaPoTNumParseVector();
            
             Console.WriteLine(@"Display multivectors in LaTeX form");
             Console.WriteLine($@"U = {mvU.TermsToLaTeX()}");
@@ -38,7 +38,7 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
 
             Console.WriteLine(@"Compute and display geometric product of multivectors");
             Console.WriteLine($@"U * I = {mvU * mvI}");
-            Console.WriteLine($@"U * I = {(mvU * mvI).ToLaTeX()}");
+            Console.WriteLine($@"U * I = {(mvU * mvI).TermsToLaTeX()}");
             Console.WriteLine();
         }
     }

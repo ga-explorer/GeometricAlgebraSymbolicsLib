@@ -11,7 +11,7 @@ namespace GeometricAlgebraSymbolicsLibSamples
     {
         static void Main(string[] args)
         {
-            Sample4.Execute();
+            ParsingSample3.Execute();
 
             Console.WriteLine();
             Console.WriteLine(@"Press any key to exit...");

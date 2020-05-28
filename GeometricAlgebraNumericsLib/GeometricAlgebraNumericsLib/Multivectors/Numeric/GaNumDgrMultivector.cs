@@ -83,7 +83,14 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
             get
             {
                 id.BasisBladeGradeIndex(out var grade, out var index);
-                return this[grade, index];
+
+                var kVectorArray = 
+                    GradedScalarValuesArray[grade];
+
+                if (kVectorArray.IsNullOrEmpty())
+                    return 0;
+
+                return kVectorArray[index];
             }
         }
 
@@ -91,9 +98,10 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
         {
             get
             {
-                var kVectorArray = GradedScalarValuesArray[grade];
+                var kVectorArray = 
+                    GradedScalarValuesArray[grade];
 
-                if (kVectorArray == null)
+                if (kVectorArray.IsNullOrEmpty())
                     return 0;
 
                 return kVectorArray[index];

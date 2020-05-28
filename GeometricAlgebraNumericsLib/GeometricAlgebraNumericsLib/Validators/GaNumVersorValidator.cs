@@ -1,5 +1,4 @@
-﻿using GeometricAlgebraNumericsLib.Multivectors.GAPoT;
-using GeometricAlgebraNumericsLib.Multivectors.Numeric;
+﻿using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric.Factories;
 using GeometricAlgebraNumericsLib.Products;
 

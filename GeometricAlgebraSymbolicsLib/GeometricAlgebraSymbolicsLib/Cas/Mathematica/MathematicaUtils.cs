@@ -239,6 +239,13 @@ namespace GeometricAlgebraSymbolicsLib.Cas.Mathematica
                 : casInterface[Mfs.Simplify[expr]];
         }
 
+        public static Expr Expand(this Expr expr, MathematicaInterface casInterface)
+        {
+            return expr.AtomQ() 
+                ? expr 
+                : casInterface[Mfs.Expand[expr]];
+        }
+
         public static bool IsZero(this Expr expr)
         {
             if (!expr.NumberQ())

@@ -18,21 +18,16 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
             //
             //Single Phase GAPoT vector using rectangular form:
             //  r(10, 20) <1,2>, r(30, 0) <3,4>
-            //
-            //All the above can be mixed together
-            //
-            //Multi-phase GAPoT vector:
-            //  [-1.3<1>, 1.2<3>, -4.6<5>] <a>; [p(233.92, −1.57) <1,2>] <b>; [r(10, 20) <1,2>, r(30, 0) <3,4>] <c>
 
             var sourceText =
-                "[-1.3<1>, 1.2<3>, -4.6<5>] <a>; [p(233.92, −1.57) <1,2>] <b>; [r(10, 20) <1,2>, r(30, 0) <3,4>] <c>";
+                "-1.3<1>, 1.2<3>, -4.6<5>, p(233.92, −1.57) <7,8>, r(10, 20) <9,10>, r(30, 0) <11,12>";
 
             var parsingResults = new IronyParsingResults(
                 new GaPoTNumVectorConstructorGrammar(), 
                 sourceText
             );
 
-            var mpVector = sourceText.GaPoTNumParseMultiPhaseVector();
+            var mpVector = sourceText.GaPoTNumParseVector();
 
             var composer = new MarkdownComposer();
 

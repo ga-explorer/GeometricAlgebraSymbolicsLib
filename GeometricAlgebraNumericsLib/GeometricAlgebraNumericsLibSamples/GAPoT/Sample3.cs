@@ -12,11 +12,11 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
 
             var mvU = 
                 "p(233.92, -1.57) <1,2>, p(0.46, -2.61) <3,4>, p(4.74, 1.28) <5,6>, p(4.02, -0.07) <7,8>, p(0.42, -2.60) <9,10>"
-                    .GaPoTNumParseSinglePhaseVector();
+                    .GaPoTNumParseVector();
 
             var mvI = 
                 "p(2.33, -0.72) <1,2>, p(0.93, 1.85) <3,4>, p(0.45, -1.69) <5,6>, p(0.49, 1.70) <7,8>, p(0.16, -1.44) <9,10>"
-                    .GaPoTNumParseSinglePhaseVector();
+                    .GaPoTNumParseVector();
 
             var mvM = mvU * mvI;
 
@@ -45,6 +45,11 @@ namespace GeometricAlgebraNumericsLibSamples.GAPoT
             Console.WriteLine(@"Display U gp inv(U) in LaTeX form");
             Console.WriteLine($@"U * inv(U) = {(mvU * mvU.Inverse()).TermsToLaTeX()}");
             Console.WriteLine($@"I * inv(I) = {(mvI * mvI.Inverse()).TermsToLaTeX()}");
+            Console.WriteLine();
+
+            Console.WriteLine(@"Display M gp inv(U) in LaTeX form");
+            Console.WriteLine($@"M * inv(I) = {(mvM * mvI.Inverse()).TermsToLaTeX()}");
+            Console.WriteLine($@"inv(U) * M = {(mvU.Inverse() * mvM).TermsToLaTeX()}");
             Console.WriteLine();
         }
     }

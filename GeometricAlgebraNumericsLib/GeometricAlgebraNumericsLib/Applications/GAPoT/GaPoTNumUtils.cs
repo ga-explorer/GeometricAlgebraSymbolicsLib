@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CodeComposerLib.Irony;
+using GeometricAlgebraNumericsLib.Interop.MATLAB;
 using Irony.Parsing;
 
 namespace GeometricAlgebraNumericsLib.Applications.GAPoT
@@ -25,7 +27,7 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             {
                 var ePosition = valueText.IndexOf('E');
 
-                var magnitude = Double.Parse(valueText.Substring(0, ePosition));
+                var magnitude = double.Parse(valueText.Substring(0, ePosition));
                 var magnitudeText = Math.Round(magnitude, LaTeXDecimalPlaces).ToString("G");
                 var exponentText = valueText.Substring(ePosition + 1);
 
@@ -36,12 +38,12 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
         }
 
 
-        private static GaPoTNumSinglePhaseVector GaPoTNumParseSinglePhaseVector(IronyParsingResults parsingResults, ParseTreeNode rootNode)
+        private static GaPoTNumVector GaPoTNumParseVector(IronyParsingResults parsingResults, ParseTreeNode rootNode)
         {
             if (rootNode.ToString() != "spVector")
                 throw new SyntaxErrorException(parsingResults.ToString());
 
-            var vector = new GaPoTNumSinglePhaseVector();
+            var vector = new GaPoTNumVector();
 
             var vectorNode = rootNode;
             foreach (var vectorElementNode in vectorNode.ChildNodes)
@@ -49,8 +51,8 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
                 if (vectorElementNode.ToString() == "spTerm")
                 {
                     //Term Form
-                    var value = Double.Parse(vectorElementNode.ChildNodes[0].FindTokenAndGetText());
-                    var id = Int32.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText()) - 1;
+                    var value = double.Parse(vectorElementNode.ChildNodes[0].FindTokenAndGetText());
+                    var id = int.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
 
                     if (id < 0)
                         throw new SyntaxErrorException(parsingResults.ToString());
@@ -60,10 +62,10 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
                 else if (vectorElementNode.ToString() == "spPolarPhasor")
                 {
                     //Polar Phasor Form
-                    var magnitude = Double.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
-                    var phase = Double.Parse(vectorElementNode.ChildNodes[2].FindTokenAndGetText());
-                    var id1 = Int32.Parse(vectorElementNode.ChildNodes[3].FindTokenAndGetText()) - 1;
-                    var id2 = Int32.Parse(vectorElementNode.ChildNodes[4].FindTokenAndGetText()) - 1;
+                    var magnitude = double.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
+                    var phase = double.Parse(vectorElementNode.ChildNodes[2].FindTokenAndGetText());
+                    var id1 = int.Parse(vectorElementNode.ChildNodes[3].FindTokenAndGetText());
+                    var id2 = int.Parse(vectorElementNode.ChildNodes[4].FindTokenAndGetText());
 
                     if (id1 < 0 || id2 != id1 + 1)
                         throw new SyntaxErrorException(parsingResults.ToString());
@@ -73,10 +75,10 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
                 else if (vectorElementNode.ToString() == "spRectPhasor")
                 {
                     //Rectangular Phasor Form
-                    var xValue = Double.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
-                    var yValue = Double.Parse(vectorElementNode.ChildNodes[2].FindTokenAndGetText());
-                    var id1 = Int32.Parse(vectorElementNode.ChildNodes[3].FindTokenAndGetText()) - 1;
-                    var id2 = Int32.Parse(vectorElementNode.ChildNodes[4].FindTokenAndGetText()) - 1;
+                    var xValue = double.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
+                    var yValue = double.Parse(vectorElementNode.ChildNodes[2].FindTokenAndGetText());
+                    var id1 = int.Parse(vectorElementNode.ChildNodes[3].FindTokenAndGetText());
+                    var id2 = int.Parse(vectorElementNode.ChildNodes[4].FindTokenAndGetText());
 
                     if (id1 < 0 || id2 != id1 + 1)
                         throw new SyntaxErrorException(parsingResults.ToString());
@@ -92,49 +94,247 @@ namespace GeometricAlgebraNumericsLib.Applications.GAPoT
             return vector;
         }
 
-        private static GaPoTNumMultiPhaseVector GaPoTNumParseMultiPhaseVector(IronyParsingResults parsingResults, ParseTreeNode rootNode)
+        public static GaPoTNumVector GaPoTNumParseVector(this string sourceText)
         {
-            if (rootNode.ToString() != "mpVector")
+            var parsingResults = new IronyParsingResults(
+                new GaPoTNumVectorConstructorGrammar(), 
+                sourceText
+            );
+
+            if (parsingResults.ContainsErrorMessages || !parsingResults.ContainsParseTreeRoot)
                 throw new SyntaxErrorException(parsingResults.ToString());
 
-            var vector = new GaPoTNumMultiPhaseVector();
+            return GaPoTNumParseVector(parsingResults, parsingResults.ParseTreeRoot);
+        }
+
+
+        private static GaPoTNumBivector GaPoTNumParseBivector(IronyParsingResults parsingResults, ParseTreeNode rootNode)
+        {
+            if (rootNode.ToString() != "bivector")
+                throw new SyntaxErrorException(parsingResults.ToString());
+
+            var bivector = new GaPoTNumBivector();
 
             var vectorNode = rootNode;
             foreach (var vectorElementNode in vectorNode.ChildNodes)
             {
-                var spVector = GaPoTNumParseSinglePhaseVector(parsingResults, vectorElementNode.ChildNodes[0]);
-                var id = (vectorElementNode.ChildNodes[1].FindTokenAndGetText().ToLower())[0] - 'a';
+                if (vectorElementNode.ToString() == "bivectorTerm0")
+                {
+                    //Scalar term
+                    var value = double.Parse(vectorElementNode.ChildNodes[0].FindTokenAndGetText());
 
-                vector.AddPhaseVector(id, spVector);
+                    bivector.AddTerm(1, 1, value);
+                }
+                else if (vectorElementNode.ToString() == "bivectorTerm2")
+                {
+                    //Bivector term
+                    var value = double.Parse(vectorElementNode.ChildNodes[0].FindTokenAndGetText());
+                    var id1 = int.Parse(vectorElementNode.ChildNodes[1].FindTokenAndGetText());
+                    var id2 = int.Parse(vectorElementNode.ChildNodes[2].FindTokenAndGetText());
+
+                    if (id1 < 0 || id2 < 0)
+                        throw new SyntaxErrorException(parsingResults.ToString());
+
+                    bivector.AddTerm(id1, id2, value);
+                }
+                else
+                {
+                    throw new SyntaxErrorException(parsingResults.ToString());
+                }
             }
 
-            return vector;
+            return bivector;
         }
 
-        public static GaPoTNumSinglePhaseVector GaPoTNumParseSinglePhaseVector(this string sourceText)
+        public static GaPoTNumBivector GaPoTNumParseBivector(this string sourceText)
         {
             var parsingResults = new IronyParsingResults(
-                new GaPoTNumVectorConstructorGrammar(), 
+                new GaPoTNumBivectorConstructorGrammar(), 
                 sourceText
             );
 
             if (parsingResults.ContainsErrorMessages || !parsingResults.ContainsParseTreeRoot)
                 throw new SyntaxErrorException(parsingResults.ToString());
 
-            return GaPoTNumParseSinglePhaseVector(parsingResults, parsingResults.ParseTreeRoot);
+            return GaPoTNumParseBivector(parsingResults, parsingResults.ParseTreeRoot);
         }
 
-        public static GaPoTNumMultiPhaseVector GaPoTNumParseMultiPhaseVector(this string sourceText)
+
+        public static GaPoTNumVector[] Negative(this IEnumerable<GaPoTNumVector> vectorsList)
         {
-            var parsingResults = new IronyParsingResults(
-                new GaPoTNumVectorConstructorGrammar(), 
-                sourceText
+            return vectorsList.Select(v => v.Negative()).ToArray();
+        }
+
+        public static GaPoTNumVector[] Inverse(this IEnumerable<GaPoTNumVector> vectorsList)
+        {
+            return vectorsList.Select(v => v.Inverse()).ToArray();
+        }
+
+        public static GaPoTNumVector[] Reverse(this IEnumerable<GaPoTNumVector> vectorsList)
+        {
+            return vectorsList.Select(v => v.Reverse()).ToArray();
+        }
+
+        public static double[] Norm(this IEnumerable<GaPoTNumVector> vectorsList)
+        {
+            return vectorsList.Select(v => v.Norm()).ToArray();
+        }
+
+        public static double[] Norm2(this IEnumerable<GaPoTNumVector> vectorsList)
+        {
+            return vectorsList.Select(v => v.Norm2()).ToArray();
+        }
+
+        public static GaPoTNumVector[] Add(this GaPoTNumVector[] vectorsList1, GaPoTNumVector[] vectorsList2)
+        {
+            if (vectorsList1.Length != vectorsList2.Length)
+                throw new InvalidOperationException();
+
+            var results = new GaPoTNumVector[vectorsList1.Length];
+
+            for (var i = 0; i < vectorsList1.Length; i++)
+                results[i] = vectorsList1[i].Add(vectorsList2[i]);
+
+            return results;
+        }
+
+        public static GaPoTNumVector[] Subtract(this GaPoTNumVector[] vectorsList1, GaPoTNumVector[] vectorsList2)
+        {
+            if (vectorsList1.Length != vectorsList2.Length)
+                throw new InvalidOperationException();
+
+            var results = new GaPoTNumVector[vectorsList1.Length];
+
+            for (var i = 0; i < vectorsList1.Length; i++)
+                results[i] = vectorsList1[i].Subtract(vectorsList2[i]);
+
+            return results;
+        }
+
+        public static GaPoTNumBivector[] Gp(this GaPoTNumVector[] vectorsList1, GaPoTNumVector[] vectorsList2)
+        {
+            if (vectorsList1.Length != vectorsList2.Length)
+                throw new InvalidOperationException();
+
+            var results = new GaPoTNumBivector[vectorsList1.Length];
+
+            for (var i = 0; i < vectorsList1.Length; i++)
+                results[i] = vectorsList1[i].Gp(vectorsList2[i]);
+
+            return results;
+        }
+
+
+        public static GaNumMatlabSparseMatrixData PolarPhasorsToMatlabArray(this IEnumerable<GaPoTNumPolarPhasor> phasorsList, int rowsCount)
+        {
+            var termsArray = 
+                phasorsList
+                    .OrderBy(t => t.Id)
+                    .ToArray();
+
+            var result = GaNumMatlabSparseMatrixData.CreateMatrix(
+                rowsCount, 
+                2,
+                termsArray.Length * 2
             );
 
-            if (parsingResults.ContainsErrorMessages || !parsingResults.ContainsParseTreeRoot)
-                throw new SyntaxErrorException(parsingResults.ToString());
+            var sparseIndex = 0;
+            foreach (var term in termsArray)
+            {
+                var row = (term.Id - 1) / 2 + 1;
 
-            return GaPoTNumParseMultiPhaseVector(parsingResults, parsingResults.ParseTreeRoot);
+                result.SetItem(sparseIndex, row, 1, term.Magnitude);
+                result.SetItem(sparseIndex + 1, row, 2, term.Phase);
+
+                sparseIndex += 2;
+            }
+
+            return result;
+        }
+
+        public static GaNumMatlabSparseMatrixData TermsToMatlabArray(this IEnumerable<GaPoTNumVectorTerm> termsList, int rowsCount)
+        {
+            var termsArray = 
+                termsList
+                    .OrderBy(t => t.TermId)
+                    .ToArray();
+
+            var result = GaNumMatlabSparseMatrixData.CreateColumnMatrix(
+                rowsCount, 
+                termsArray.Length
+            );
+
+            var sparseIndex = 0;
+            foreach (var term in termsArray)
+            {
+                result.SetItem(sparseIndex, term.TermId, term.Value);
+
+                sparseIndex++;
+            }
+
+            return result;
+        }
+
+        public static GaNumMatlabSparseMatrixData TermsToMatlabArray(this GaPoTNumVector[] vectorsList, int rowsCount)
+        {
+            var columnsCount = vectorsList.Length;
+
+            var termsList = 
+                vectorsList
+                    .Select(v => v.GetTerms()
+                        .OrderBy(t => t.TermId)
+                        .ToArray()
+                    ).ToArray();
+
+            var result = GaNumMatlabSparseMatrixData.CreateMatrix(
+                rowsCount,
+                columnsCount,
+                termsList.Sum(t => t.Length)
+            );
+
+            var sparseIndex = 0;
+            for (var j = 0; j < columnsCount; j++)
+            {
+                var termsArray = 
+                    termsList[j];
+
+                foreach (var term in termsArray)
+                {
+                    result.SetItem(sparseIndex, term.TermId, j, term.Value);
+
+                    sparseIndex++;
+                }
+            }
+
+            return result;
+        }
+
+        public static GaNumMatlabSparseMatrixData TermsToMatlabArray(this IEnumerable<GaPoTNumBivectorTerm> termsList, int rowsCount)
+        {
+            var termsArray = termsList
+                .OrderBy(t => t.TermId1)
+                .ThenBy(t => t.TermId2)
+                .ToArray();
+
+            var result = GaNumMatlabSparseMatrixData.CreateSquareMatrix(
+                rowsCount, 
+                termsArray.Length
+            );
+
+            var sparseIndex = 0;
+            foreach (var term in termsArray)
+            {
+                result.SetItem(
+                    sparseIndex,
+                    term.TermId1,
+                    term.TermId2,
+                    term.Value
+                );
+
+                sparseIndex++;
+            }
+
+            return result;
         }
     }
 }

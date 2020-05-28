@@ -46,18 +46,27 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
 
         internal GaPoTSymPolarPhasor(int id, Expr magnitude, Expr phase)
         {
-            Debug.Assert(id % 2 == 0);
+            Debug.Assert(id > 0 && id % 2 == 1);
 
             Id = id;
             Magnitude = magnitude;
             Phase = phase;
         }
 
+        internal GaPoTSymPolarPhasor(int id, Expr magnitude)
+        {
+            Debug.Assert(id > 0 && id % 2 == 1);
 
-        public IEnumerable<GaPoTSymSinglePhaseVectorTerm> GetTerms()
+            Id = id;
+            Magnitude = magnitude;
+            Phase = Expr.INT_ZERO;
+        }
+
+
+        public IEnumerable<GaPoTSymVectorTerm> GetTerms()
         {
             return Magnitude.IsZero()
-                ? Enumerable.Empty<GaPoTSymSinglePhaseVectorTerm>()
+                ? Enumerable.Empty<GaPoTSymVectorTerm>()
                 : ToRectPhasor().GetTerms();
         }
 
@@ -80,8 +89,8 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
             if (Magnitude.IsZero())
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             return $"p('{Magnitude}', '{Phase}') <{i1},{i2}>";
         }
@@ -91,8 +100,8 @@ namespace GeometricAlgebraSymbolicsLib.Applications.GAPoT
             if (Magnitude.IsZero())
                 return "0";
 
-            var i1 = Id + 1;
-            var i2 = Id + 2;
+            var i1 = Id;
+            var i2 = Id + 1;
 
             var magnitudeText = Magnitude.GetLaTeXScalar().LaTeXMathAddParentheses();
             var phaseText = Phase.GetLaTeXScalar().LaTeXMathAddParentheses();

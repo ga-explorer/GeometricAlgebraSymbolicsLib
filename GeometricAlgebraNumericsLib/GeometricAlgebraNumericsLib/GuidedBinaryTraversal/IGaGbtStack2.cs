@@ -29,13 +29,7 @@
         bool TosHasChild21();
 
 
-        void PushDataOfChild00();
-
-        void PushDataOfChild10();
-
-        void PushDataOfChild01();
-
-        void PushDataOfChild11();
+        void PushDataOfChild(int childIndex);
     }
 
     public interface IGaGbtStack2<out T> : IGaGbtStack2

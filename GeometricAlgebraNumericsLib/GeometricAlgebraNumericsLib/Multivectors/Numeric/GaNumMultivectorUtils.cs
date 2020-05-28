@@ -12,7 +12,7 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
     public static class GaNumMultivectorUtils
     {
         public static GaMultivectorMutableImplementation DefaultTempMultivectorKind { get; set; } 
-            = GaMultivectorMutableImplementation.Array;
+            = GaMultivectorMutableImplementation.DenseArrayRepresentation;
 
         public static bool DisableCompactifyMultivectors { get; set; } = false;
 

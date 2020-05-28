@@ -16,7 +16,7 @@ namespace GeometricAlgebraSymbolicsLib.Multivectors
     public static class GaSymMultivectorUtils
     {
         public static GaMultivectorMutableImplementation DefaultTempMultivectorKind { get; set; }
-            = GaMultivectorMutableImplementation.Tree;
+            = GaMultivectorMutableImplementation.SparseArrayRepresentation;
 
         public static bool DisableCompactifyMultivectors { get; set; } = false;
 

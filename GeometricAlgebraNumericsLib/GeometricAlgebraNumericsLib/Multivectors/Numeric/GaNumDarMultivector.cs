@@ -15,10 +15,10 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
     /// </summary>
     public sealed class GaNumDarMultivector : GaNumMultivector
     {
-        public static GaNumDarMultivector CreateZero(int gaSpaceDim)
+        public static GaNumDarMultivector CreateZero(int vSpaceDim)
         {
             return new GaNumDarMultivector(
-                new EmptyReadOnlyList<double>(gaSpaceDim)
+                new EmptyReadOnlyList<double>(vSpaceDim.ToGaSpaceDimension())
             );
         }
 

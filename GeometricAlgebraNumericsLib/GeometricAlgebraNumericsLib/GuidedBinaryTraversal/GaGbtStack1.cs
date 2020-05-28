@@ -40,27 +40,8 @@
         }
 
 
-        /// <summary>
-        /// Top-of-stack node has child 0
-        /// </summary>
-        /// <returns></returns>
-        public abstract bool TosHasChild0();
-
-        /// <summary>
-        /// Top-of-stack node has child 1
-        /// </summary>
-        /// <returns></returns>
-        public abstract bool TosHasChild1();
-
-
-        /// <summary>
-        /// Push data of top-of-stack node's child 0 into stack
-        /// </summary>
-        public abstract void PushDataOfChild0();
-
-        /// <summary>
-        /// Push data of top-of-stack node's child 1 into stack
-        /// </summary>
-        public abstract void PushDataOfChild1();
+        public abstract bool TosHasChild(int childIndex);
+        
+        public abstract void PushDataOfChild(int childIndex);
     }
 }

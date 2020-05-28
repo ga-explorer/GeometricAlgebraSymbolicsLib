@@ -24,7 +24,7 @@ namespace GeometricAlgebraSymbolicsLib.Multivectors
                 case GaMultivectorMutableImplementation.Hash:
                     return GaSymMultivectorTempHash.Create(gaSpaceDim);
 
-                case GaMultivectorMutableImplementation.Tree:
+                case GaMultivectorMutableImplementation.SparseArrayRepresentation:
                     return GaSymMultivectorTempTree.Create(gaSpaceDim);
             }
 

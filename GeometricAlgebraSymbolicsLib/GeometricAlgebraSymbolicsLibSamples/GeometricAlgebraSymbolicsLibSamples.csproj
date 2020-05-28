@@ -73,10 +73,13 @@
   <ItemGroup>
     <Compile Include="GAPoT\ParsingSample1.cs" />
     <Compile Include="GAPoT\ParsingSample2.cs" />
+    <Compile Include="GAPoT\ParsingSample3.cs" />
     <Compile Include="GAPoT\Sample1.cs" />
     <Compile Include="GAPoT\Sample2.cs" />
     <Compile Include="GAPoT\Sample3.cs" />
     <Compile Include="GAPoT\Sample4.cs" />
+    <Compile Include="GAPoT\Sample5.cs" />
+    <Compile Include="GAPoT\Sample6.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

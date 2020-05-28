@@ -100,15 +100,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\GAPoT\GaPoTSymMultiPhaseBivector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymMultiPhaseVector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymMultiPhaseVectorTerm.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTSymBivectorConstructorGrammar.cs" />
     <Compile Include="Applications\GAPoT\GaPoTSymPolarPhasor.cs" />
     <Compile Include="Applications\GAPoT\GaPoTSymRectPhasor.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymSinglePhaseBivector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymSinglePhaseBivectorTerm.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymSinglePhaseVector.cs" />
-    <Compile Include="Applications\GAPoT\GaPoTSymSinglePhaseVectorTerm.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTSymBivector.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTSymBivectorTerm.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTSymVector.cs" />
+    <Compile Include="Applications\GAPoT\GaPoTSymVectorTerm.cs" />
     <Compile Include="Applications\GAPoT\GaPoTSymUtils.cs" />
     <Compile Include="Applications\GAPoT\GaPoTSymVectorConstructorGrammar.cs" />
     <Compile Include="Cas\Mathematica\NETLink\ComplexClassHandler.cs" />

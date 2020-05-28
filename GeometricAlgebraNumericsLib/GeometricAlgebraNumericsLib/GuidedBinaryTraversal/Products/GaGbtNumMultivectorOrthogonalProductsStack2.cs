@@ -11,7 +11,7 @@ using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
 {
     public sealed class GaGbtNumMultivectorOrthogonalProductsStack2
-        : GaGbtStack2//, IGaGbtNumMultivectorOrthogonalProductsStack2
+        : GaGbtStack2
     {
         public static GaGbtNumMultivectorOrthogonalProductsStack2 Create(IGaNumMultivector mv1, IGaNumMultivector mv2)
         {
@@ -170,16 +170,21 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -199,15 +204,20 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
+                    if (hasChild20) PushDataOfChild(1);
                 }
             }
         }
@@ -227,15 +237,20 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -255,15 +270,20 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
+                    if (hasChild20) PushDataOfChild(0);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -283,14 +303,19 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
+                    if (hasChild20) PushDataOfChild(0);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -311,16 +336,21 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -341,16 +371,21 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -371,16 +406,21 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -401,16 +441,21 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20()) PushDataOfChild00();
-                    if (TosHasChild21()) PushDataOfChild01();
+                    if (hasChild20) PushDataOfChild(0);
+                    if (hasChild21) PushDataOfChild(2);
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20()) PushDataOfChild10();
-                    if (TosHasChild21()) PushDataOfChild11();
+                    if (hasChild20) PushDataOfChild(1);
+                    if (hasChild21) PushDataOfChild(3);
                 }
             }
         }
@@ -437,37 +482,42 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature = 
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -496,31 +546,36 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -549,31 +604,36 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -602,25 +662,30 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -650,37 +715,42 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -710,37 +780,42 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -770,37 +845,42 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
@@ -830,37 +910,42 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
                     continue;
                 }
 
-                if (TosHasChild10())
+                var hasChild10 = TosHasChild10();
+                var hasChild11 = TosHasChild11();
+                var hasChild20 = TosHasChild20();
+                var hasChild21 = TosHasChild21();
+
+                if (hasChild10)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild00();
+                        PushDataOfChild(0);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
-                        PushDataOfChild01();
+                        PushDataOfChild(2);
                         metricStack.Push(basisBladeSignature);
                     }
                 }
 
-                if (TosHasChild11())
+                if (hasChild11)
                 {
-                    if (TosHasChild20())
+                    if (hasChild20)
                     {
-                        PushDataOfChild10();
+                        PushDataOfChild(1);
                         metricStack.Push(basisBladeSignature);
                     }
 
-                    if (TosHasChild21())
+                    if (hasChild21)
                     {
                         var basisVectorSignature =
                             metricBasisVectorsSignaturesList[TosTreeDepth - 1];
 
                         if (basisVectorSignature != 0)
                         {
-                            PushDataOfChild11();
+                            PushDataOfChild(3);
                             metricStack.Push(basisBladeSignature * basisVectorSignature);
                         }
                     }
