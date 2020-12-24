@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using CodeComposerLib.Irony;
 using DataStructuresLib;
-using GeometricAlgebraNumericsLib.Frames;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric.Factories;
 using GeometricAlgebraNumericsLib.Structures.BinaryTrees;
+using GeometricAlgebraStructuresLib.Frames;
 using TextComposerLib.Text;
 
 namespace GeometricAlgebraNumericsLib.Multivectors

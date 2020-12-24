@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using GeometricAlgebraNumericsLib.Frames;
 using GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Multivectors;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric.Factories;
 using GeometricAlgebraNumericsLib.Structures.BinaryTraversal;
 using GeometricAlgebraNumericsLib.Structures.BinaryTrees;
+using GeometricAlgebraStructuresLib.Frames;
 
 namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
 {
@@ -67,7 +67,7 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
 
         public abstract bool ContainsStoredTerm(int grade, int index);
 
-        public abstract bool ContainsStoredKVector(int grade);
+        public abstract bool ContainsStoredTermOfGrade(int grade);
 
         public abstract IEnumerable<int> GetStoredGrades();
 
@@ -76,11 +76,11 @@ namespace GeometricAlgebraNumericsLib.Multivectors.Numeric
 
         public abstract IEnumerable<GaTerm<double>> GetStoredTerms();
 
-        public abstract IEnumerable<GaTerm<double>> GetStoredTerms(int grade);
+        public abstract IEnumerable<GaTerm<double>> GetStoredTermsOfGrade(int grade);
 
         public abstract IEnumerable<GaTerm<double>> GetNonZeroTerms();
 
-        public abstract IEnumerable<GaTerm<double>> GetNonZeroTerms(int grade);
+        public abstract IEnumerable<GaTerm<double>> GetNonZeroTermsOfGrade(int grade);
 
         public abstract IEnumerable<int> GetStoredTermIds();
 

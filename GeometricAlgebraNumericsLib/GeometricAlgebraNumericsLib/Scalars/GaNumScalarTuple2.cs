@@ -1,6 +1,4 @@
-﻿using Irony.Interpreter;
-
-namespace GeometricAlgebraNumericsLib.Scalars
+﻿namespace GeometricAlgebraNumericsLib.Scalars
 {
     public sealed class GaNumScalarTuple2<T> where T : IGaNumScalar
     {

@@ -17,11 +17,11 @@ namespace GeometricAlgebraSymbolicsLibSamples.GAPoT
                 "'-1.3'<>, '1.2'<1,2>, '-4.6'<3,4>";
 
             var parsingResults = new IronyParsingResults(
-                new GaPoTSymBivectorConstructorGrammar(), 
+                new GaPoTSymBiversorConstructorGrammar(), 
                 sourceText
             );
 
-            var bivector = sourceText.GaPoTSymParseBivector();
+            var bivector = sourceText.GaPoTSymParseBiversor();
 
             var composer = new MarkdownComposer();
 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GeometricAlgebraNumericsLib.Frames;
 using GeometricAlgebraNumericsLib.Multivectors;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric.Factories;
+using GeometricAlgebraStructuresLib.Frames;
 
 namespace GeometricAlgebraNumericsLib.Interop.MATLAB
 {

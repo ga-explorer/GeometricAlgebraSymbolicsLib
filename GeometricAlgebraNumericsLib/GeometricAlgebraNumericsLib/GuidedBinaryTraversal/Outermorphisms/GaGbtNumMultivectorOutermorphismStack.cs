@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Multivectors;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Multivectors.VectorKVectorOp;
+using GeometricAlgebraStructuresLib.GuidedBinaryTraversal;
 
 namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Outermorphisms
 {

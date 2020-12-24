@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Structures.BinaryTrees;
+using GeometricAlgebraStructuresLib.GuidedBinaryTraversal;
 
 namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal
 {

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using DataStructuresLib;
-using GeometricAlgebraNumericsLib.Frames;
 using GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Multivectors;
 using GeometricAlgebraNumericsLib.Multivectors;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
+using GeometricAlgebraStructuresLib.Frames;
+using GeometricAlgebraStructuresLib.GuidedBinaryTraversal;
 
 namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
 {
@@ -57,28 +57,28 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
             => MultivectorStack3.TosValue;
 
         public bool TosIsNonZeroOp
-            => GaNumFrameUtils.IsNonZeroOp(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroOp(TosId1, TosId2);
 
         public bool TosIsNonZeroESp
-            => GaNumFrameUtils.IsNonZeroESp(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroESp(TosId1, TosId2);
 
         public bool TosIsNonZeroELcp
-            => GaNumFrameUtils.IsNonZeroELcp(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroELcp(TosId1, TosId2);
 
         public bool TosIsNonZeroERcp
-            => GaNumFrameUtils.IsNonZeroERcp(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroERcp(TosId1, TosId2);
 
         public bool TosIsNonZeroEFdp
-            => GaNumFrameUtils.IsNonZeroEFdp(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroEFdp(TosId1, TosId2);
 
         public bool TosIsNonZeroEHip
-            => GaNumFrameUtils.IsNonZeroEHip(TosId1, TosId2);
+            => GaFrameUtils.IsNonZeroEHip(TosId1, TosId2);
 
         public bool TosIsNonZeroEAcp
-            => GaNumFrameUtils.IsNonZeroEAcp((int)TosId1, (int)TosId2);
+            => GaFrameUtils.IsNonZeroEAcp((int)TosId1, (int)TosId2);
 
         public bool TosIsNonZeroECp
-            => GaNumFrameUtils.IsNonZeroECp((int)TosId1, (int)TosId2);
+            => GaFrameUtils.IsNonZeroECp((int)TosId1, (int)TosId2);
 
         public ulong TosChildIdXor000
             => Stack1.TosChildId0 ^ Stack2.TosChildId0 ^ Stack3.TosChildId0;
@@ -161,7 +161,7 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
 
             var value = TosValue1 * TosValue2 * TosValue3;
 
-            if (GaNumFrameUtils.IsNegativeEGp(id1, id2, id3))
+            if (GaFrameUtils.IsNegativeEGp(id1, id2, id3))
                 value = -value;
 
             //Console.Out.WriteLine($"id: ({id1}, {id2}, {id3}), value: {value}");
@@ -189,7 +189,7 @@ namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Products
             var value = 
                 TosValue1 * TosValue2 * TosValue3 * basisBladeSignature;
 
-            if (GaNumFrameUtils.IsNegativeEGp(id1, id2, id3))
+            if (GaFrameUtils.IsNegativeEGp(id1, id2, id3))
                 value = -value;
 
             return new GaTerm<double>(id1 ^ id2 ^ id3, value);

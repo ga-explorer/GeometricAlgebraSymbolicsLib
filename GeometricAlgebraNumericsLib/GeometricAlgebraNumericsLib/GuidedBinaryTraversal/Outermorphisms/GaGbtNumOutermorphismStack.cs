@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GeometricAlgebraNumericsLib.Frames;
 using GeometricAlgebraNumericsLib.Multivectors.Numeric;
 using GeometricAlgebraNumericsLib.Multivectors.VectorKVectorOp;
+using GeometricAlgebraStructuresLib.Frames;
+using GeometricAlgebraStructuresLib.GuidedBinaryTraversal;
 
 namespace GeometricAlgebraNumericsLib.GuidedBinaryTraversal.Outermorphisms
 {
